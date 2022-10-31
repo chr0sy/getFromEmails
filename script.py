@@ -3,9 +3,9 @@ import email
 from email.header import Header, decode_header, make_header
 
 # Connection settings
-HOST = 'mail.flixunblocker.com'
-USERNAME = 'support@flixunblocker.com'
-PASSWORD = "1A#l[D8wj%m1"
+HOST = 'IMAP-SERVER'
+USERNAME = 'USERNAME'
+PASSWORD = "PASSWORD"
 
 # Connects with the above credentials using IMAP port 993
 m = imaplib.IMAP4_SSL(HOST, 993)
