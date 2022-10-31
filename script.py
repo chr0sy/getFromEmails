@@ -37,7 +37,7 @@ if result == 'OK':
             # Remove duplicates
             # The above code will write each email 'From:' field in the text file, multiple times if you had a conversation back and forth with them.
             # With the following code, after the 'with' block has been closed above, we open the file and read ONLY the unique lines with .readlines().
-            # We use set() to convert the list to a unique set.
+            # We use set() to convert the text to a unique set, therefore removing duplicate strings
             # We then CREATE a new text file called emailsUnique.txt and write all the unique emails to it.
             unique_emails = set(open('emails.txt').readlines())
             w_unique_emails = open('emailsUnique.txt', 'w').writelines(unique_emails)
