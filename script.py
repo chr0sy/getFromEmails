@@ -20,25 +20,21 @@ if result == 'OK':
             # Gets raw message
             email_message_raw = email.message_from_bytes(data[0][1])   
             # Decode headers (where From: is stored)
-            # This can be used to retrieve other fields in email header, for example Reply-to
+            # This can be used to retrieve other fields in email header, for example ['Reply-to']
             email_from = str(make_header(decode_header(email_message_raw['From'])))
-            # Print each name and email
-            # This will print a list of ['Name', 'Email'], can also just print ['Email'] in case there is no name
+            # email_addr will print ['Name', 'Email'], it might also print ['Email'] when there is no 'Name'
             email_addr = email_from.replace('<', '>').split('>')
-            # Write email list to .txt
-            # We now need to open a pre-created text called emails.txt
-            # If length of email_addr is larger than 1, so there's a name and email present, it should get email_addr[1] which is the email field.
-            # However, if there's no email, then the list would be just ['Email'], so we need to get index [0].
+            # We create a file emails.txt and add conditions for both scenarios, if there is a Name field and when there isn't
+            # If length of email_addr is larger than 1 - so there is both Name and Email present, it should get email_addr[1] - the email field.
+            # However, if there's no name, then the list would be just ['Email'], so we need to get index [0].
             with open('emails.txt', 'a') as emailText:
                 if len(email_addr) > 1:
                     emailText.write("{}\n".format(email_addr[1]))
                 else:
                     emailText.write("{}\n".format(email_addr[0]))
-            # Remove duplicates
-            # The above code will write each email 'From:' field in the text file, multiple times if you had a conversation back and forth with them.
-            # With the following code, after the 'with' block has been closed above, we open the file and read ONLY the unique lines with .readlines().
+            # We open the file and read ONLY the unique lines with .readlines().
             # We use set() to convert the text to a unique set, therefore removing duplicate strings
-            # We then CREATE a new text file called emailsUnique.txt and write all the unique emails to it.
+            # We then create a new text file called emailsUnique.txt and write all the unique emails to it.
             unique_emails = set(open('emails.txt').readlines())
             w_unique_emails = open('emailsUnique.txt', 'w').writelines(unique_emails)
             
