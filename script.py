@@ -29,11 +29,11 @@ if result == 'OK':
             # We now need to open a pre-created text called emails.txt
             # If length of email_addr is larger than 1, so there's a name and email present, it should get email_addr[1] which is the email field.
             # However, if there's no email, then the list would be just ['Email'], so we need to get index [0].
-            with open('emails.txt', 'a') as flixvpn:
+            with open('emails.txt', 'a') as emailText:
                 if len(email_addr) > 1:
-                    flixvpn.write("{}\n".format(email_addr[1]))
+                    emailText.write("{}\n".format(email_addr[1]))
                 else:
-                    flixvpn.write("{}\n".format(email_addr[0]))
+                    emailText.write("{}\n".format(email_addr[0]))
             # Remove duplicates
             # The above code will write each email 'From:' field in the text file, multiple times if you had a conversation back and forth with them.
             # With the following code, after the 'with' block has been closed above, we open the file and read ONLY the unique lines with .readlines().
